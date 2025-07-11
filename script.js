@@ -353,7 +353,7 @@ function sendInvite() {
     try {
   const userId = tg.initDataUnsafe.user?.id || '0';
     const botUsername = 'Business_shop_bot';
-    const appName = 'WING';
+    const appName = 'WHITE_WING';
     
     const refLink = `https://t.me/${botUsername}/${appName}`;
     const shareText = `🚀 Присоединяйся к проекту WING!`;
@@ -377,7 +377,7 @@ function sendInvite() {
 function copyInviteLink() {
   const userId = tg.initDataUnsafe.user?.id || '0';
   const botUsername = 'Business_shop_bot';
-  const appName = 'wing';
+  const appName = 'WHITE_WING';
   const refLink = `https://t.me/${botUsername}/${appName}?startapp=ref_${userId}`;
   
   navigator.clipboard.writeText(refLink).then(() => {
