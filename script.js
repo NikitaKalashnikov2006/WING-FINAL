@@ -4,11 +4,9 @@ const tg = window.Telegram.WebApp;
 
 
   
- const availableScreenWidth = window.screen.availWidth;
- const availableScreenHeight = window.screen.availHeight;
- if (availableScreenWidth < 1440 && availableScreenHeight < 3220){
+
 tg.requestFullscreen();
- }
+
 let tonConnectUI = null;
 
 // Инициализация при загрузке
