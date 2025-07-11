@@ -4,9 +4,11 @@ const tg = window.Telegram.WebApp;
 
 
   
-
+ const availableScreenWidth = window.screen.availWidth;
+ const availableScreenHeight = window.screen.availHeight;
+ if (availableScreenWidth < 1440 && availableScreenHeight < 3220){
 tg.requestFullscreen();
-
+ }
 let tonConnectUI = null;
 
 // Инициализация при загрузке
@@ -351,7 +353,7 @@ function sendInvite() {
     try {
   const userId = tg.initDataUnsafe.user?.id || '0';
     const botUsername = 'Business_shop_bot';
-    const appName = 'WHITE_WING';
+    const appName = 'WING';
     
     const refLink = `https://t.me/${botUsername}/${appName}`;
     const shareText = `🚀 Присоединяйся к проекту WING!`;
@@ -375,7 +377,7 @@ function sendInvite() {
 function copyInviteLink() {
   const userId = tg.initDataUnsafe.user?.id || '0';
   const botUsername = 'Business_shop_bot';
-  const appName = 'WHITE_WING';
+  const appName = 'wing';
   const refLink = `https://t.me/${botUsername}/${appName}?startapp=ref_${userId}`;
   
   navigator.clipboard.writeText(refLink).then(() => {
