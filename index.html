@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram WebApp</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://telegram.org/js/telegram-web-app.js?58"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Весь контент на одной странице -->
+    <div id="content">
+      <!-- Главная страница -->
+<div id="home-page" class="page active-page">
+  <div class="news">
+    <h3>Добро пожаловать в WING!</h3>
+    <p>Твой надежный проводник в мире криптовалют и инвестиций.</p>
+    <p>Здесь ты научишься:</p>
+    <ul>
+      <li>Основам работы с криптовалютами</li>
+      <li>Безопасному хранению активов</li>
+      <li>Торговле на биржах</li>
+      <li>Анализу рынка</li>
+    </ul>
+    <p>Начни с уроков и открой для себя мир финансовых возможностей!</p>
+  </div>
+  <button id="exchangeSimulator" class="action-btn">
+    <i class="fab fa-bitcoin"></i>Старт 
+  </button>
+</div>
+
+
+     <!-- Страница друзей -->
+<div id="friends-page" class="page hidden-page">
+ <div class="friends-content">
+    <div class="friends-header">
+      <h2>Сообщество WING</h2>
+      <p>Приглашай друзей в наше сообщество и развивайтесь вместе!</p>
+    </div>
+    
+    <div class="friends-info">
+      <div class="info-card">
+        <i class="fas fa-users"></i>
+        <h3>Общение</h3>
+      </div>
+      
+      <div class="info-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Идеи</h3>
+      </div>
+      
+      <div class="info-card">
+        <i class="fas fa-handshake"></i>
+        <h3>Сотрудничество</h3>
+      </div>
+    </div>
+  </div>
+    
+    <button id="inviteFriend" class="invite-btn">
+      <i class="fas fa-regular fa-user-plus"></i>
+      Пригласить друга
+    </button>
+  </div>
+  
+  <!-- Модальное окно для приглашения -->
+  <div id="inviteModal" class="modal">
+    <div class="modal-content">
+      <h3>Пригласить друга</h3>
+      <button id="sendInviteBtn" class="modal-btn">
+        <i class="fas fa-paper-plane"></i> Отправить
+      </button>
+      <button id="copyInviteBtn" class="modal-btn">
+        <i class="fas fa-copy"></i> Копировать ссылку
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+      <!-- Страница уроков -->
+      <div id="lessons-page" class="page hidden-page">
+  <div class="lessons-content">
+    <div class="lessons-list">
+      <!-- Кнопка Урока 1 -->
+      <button class="lesson-btn" data-lesson="lesson1">
+        <span class="lesson-number">Урок 1</span>
+        <span class="lesson-name">Введение в криптовалюту</span>
+        <i class="fas fa-chevron-right"></i> <!-- Добавляем иконку -->
+      </button>
+      
+      <!-- Кнопка Урока 2 -->
+      <button class="lesson-btn" data-lesson="lesson2">
+        <span class="lesson-number">Урок 2</span>
+        <span class="lesson-name">Криптовалюта для начинающих</span>
+        <i class="fas fa-chevron-right"></i> <!-- Добавляем иконку -->
+      </button>
+      
+      <!-- Кнопка Урока 3 -->
+      <button class="lesson-btn" data-lesson="lesson3">
+        <span class="lesson-number">Урок 3</span>
+        <span class="lesson-name">Торговля на бирже</span>
+        <i class="fas fa-chevron-right"></i> <!-- Добавляем иконку -->
+      </button>
+      
+      <!-- Кнопка Урока 4 -->
+      <button class="lesson-btn" data-lesson="lesson4">
+        <span class="lesson-number">Урок 4</span>
+        <span class="lesson-name">Выбор кошелька</span>
+        <i class="fas fa-chevron-right"></i> <!-- Добавляем иконку -->
+      </button> 
+      
+      <!-- Кнопка Урока 4 -->
+      <button class="lesson-btn" data-lesson="lesson5">
+        <span class="lesson-number">Урок 5</span>
+        <span class="lesson-name">Безопасность</span>
+        <i class="fas fa-chevron-right"></i> <!-- Добавляем иконку -->
+      </button>
+    </div>
+  </div>
+  <div id="lesson-content-container" class="lesson-content hidden-page">
+  <h2 id="lesson-title"></h2>
+  <div id="lesson-text" class="lesson-text"></div>
+</div>
+</div>
+
+      <!-- Страница заданий -->
+<div id="tasks-page" class="page hidden-page">
+  <div class="tasks-content">
+    <h2 class="tasks-title">Полезные инструменты:</h2>
+    
+    <div class="tasks-list">
+      <!-- Кнопка задания -->
+     <div class="task-item">
+      <i class="fas fa-paper-plane"></i>
+  <span class="task-name">Подписаться на Telegram Wing</span>
+  <button class="task-action-btn">Подписаться</button>
+</div>
+    </div>
+  </div>
+</div>
+
+      <!-- Страница кошелька -->
+      <div id="wallet-page" class="page hidden-page">
+        <!-- Контейнер для TON Connect -->
+        <div id="ton-connect-container">
+          <div id="ton-connect"></div>
+        </div>
+        
+        <!-- Форма для отправки TON -->
+        <div class="input-group">
+          <label for="amount">Хотите стать частью команды? Донаты - это отличный способ поддержать Wing и внести свой вклад в его развитие. Подключайте свой кошелёк, вводите кол-во и вносите TON! (за отправку берётся комиссия 0.1 TON)</label>
+          <input type="text" id="amount" value="1" placeholder="Enter amount in TON" inputMode="decimal">
+          <div id="amount-error">Пожалуйста, введите корректное число</div>
+        </div>
+        
+        <button id="send-btn" disabled>Отправить</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <nav>
+      <button class="nav-btn active" data-page="home">
+        <i class="fas fa-home"></i>
+        <span>Главная</span>
+      </button>
+      <button class="nav-btn" data-page="friends">
+        <i class="fas fa-user-friends"></i>
+        <span>Друзья</span>
+      </button>
+      <button class="nav-btn" data-page="lessons">
+        <i class="fas fa-book"></i>
+        <span>Уроки</span>
+      </button>
+      <button class="nav-btn" data-page="tasks">
+        <i class="fas fa-tasks"></i>
+        <span>Инструменты</span>
+      </button>
+      <button class="nav-btn" data-page="wallet">
+        <i class="fas fa-wallet"></i>
+        <span>Кошелёк</span>
+      </button>
+    </nav>
+  </footer>
+
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,824 @@
+/* Основные стили */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+   overflow-x: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  /*padding-top: var(--ts-safe-area-inset-top);
+    padding-bottom: var(--ts-safe-area-inset-bottom);*/
+    padding-top: var(--tg-content-safe-area-inset-top);
+    padding-bottom: var(--tg-content-safe-area-inset-bottom);
+}
+
+#content {
+  flex: 1;
+  padding: 20px;
+  transition: opacity 0.3s ease;
+}
+
+/* Стили футера */
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 2%;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  height: 6%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.1s;
+}
+
+.nav-btn i {
+  font-size: 18px;
+}
+
+.nav-btn span {
+  font-size: 12px;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.1);
+  position: relative;
+}
+
+.nav-btn:active {
+  transform: translateY(2px);
+}
+
+.nav-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.nav-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+}
+
+.nav-btn.active:active {
+  transform: none;
+}
+
+/* Стили для главной страницы */
+.page {
+  font-family: Arial, sans-serif;
+  
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: auto;
+  background-color: black;
+  color: white;
+  /*padding-top: var(--ts-safe-area-inset-top);
+    padding-bottom: var(--ts-safe-area-inset-bottom);*/
+    padding-top: var(--tg-content-safe-area-inset-top);
+    padding-bottom: var(--tg-content-safe-area-inset-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-container {
+  width: 120px;
+  height: 120px;
+  margin: 4% auto 0;
+  border-radius: 50%;
+  overflow: hidden;
+  /*border: 4px solid rgb(103, 181, 35);*/
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userName {
+  text-align: center;
+  font-weight:bolder;
+  font-size: larger;
+  margin-top: 5%;
+}
+
+/* Обновленные стили для текста на главной странице */
+.news {
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.9));
+  color: white;
+  width: 80%;
+  margin: 15px auto;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(103, 181, 35, 0.3);
+  backdrop-filter: blur(5px);
+  position: static;
+  transform: none;
+  left: auto;
+  bottom: auto;
+}
+
+.news h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: rgb(103, 181, 35);
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.news p {
+  text-align: center;
+  margin: 12px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+.news ul {
+  padding-left: 25px;
+  margin: 15px 0;
+  list-style-type: none;
+}
+
+.news li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #e0e0e0;
+  text-align: left;
+}
+
+.news li:before {
+  content: "•";
+  color: rgb(103, 181, 35);
+  font-size: 1.5rem;
+  position: absolute;
+  left: 5px;
+  top: -3px;
+}
+
+.news p:last-child {
+  margin-top: 20px;
+  font-weight: bold;
+  color: rgb(103, 181, 35);
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+
+
+#exchangeSimulator {
+  background: rgb(103, 181, 35);
+  color: black;
+  font-weight: bolder;
+  font-size: medium;
+  padding: 18px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: fixed;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 
+             0 6px 12px rgba(0, 0, 0, 0.2),
+             inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.2s;
+  border: none;
+  width: 90%;
+}
+
+#exchangeSimulator:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 
+             0 8px 16px rgba(0, 0, 0, 0.3),
+             inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#exchangeSimulator:active {
+  transform: translateX(-50%) translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 
+             0 3px 6px rgba(0, 0, 0, 0.1),
+             inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#exchangeSimulator i {
+  font-size: 18px;
+}
+
+/* Стили для страницы "Друзья" */
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 70px;
+  overflow-y: auto;
+}
+
+/* Стили для страницы друзей */
+.friends-content {
+  padding: 15px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.friends-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.friends-header h2 {
+  color: rgb(103, 181, 35);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.friends-header p {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.friends-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.info-card {
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.9));
+  border-radius: 10px;
+  padding-top: 5%;
+  text-align: center;
+}
+
+.info-card i {
+  font-size: 2rem;
+  color: rgb(103, 181, 35);
+  margin-bottom: 10px;
+}
+
+.info-card h3 {
+  color: white;
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.info-card p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+
+.invite-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Стили для модального окна */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: white;
+}
+
+.modal-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  margin: 10px 0;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.modal-btn i {
+  font-size: 16px;
+}
+
+/* Стили для уведомления "Скопировано!" */
+.copied-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(103, 181, 35, 0.9);
+  color: black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  z-index: 1001;
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+/* Стили для списка уроков */
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 15px;
+  margin-top: 20px;
+}
+
+/* Основные стили кнопок */
+.lesson-btn {
+  background: rgb(103, 181, 35); /* Зелёный фон */
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  width: 100%;
+  text-align: left;
+  color: black; /* Чёрный текст для контраста */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+/* Номер урока */
+.lesson-number {
+  color: black; /* Чёрный вместо зелёного */
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: underline;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Название урока */
+.lesson-name {
+  font-size: 14px;
+  display: block;
+  color: black; /* Чёрный текст */
+  font-weight: 500; /* Полужирный */
+}
+
+/* Эффекты при взаимодействии */
+.lesson-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.lesson-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  background: rgba(103, 181, 35, 0.9); /* Чуть темнее при нажатии */
+}
+
+.lesson-btn {
+  position: relative; /* Для позиционирования иконки */
+  padding-right: 100px; /* Место для иконки */
+}
+
+.lesson-btn i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+/* Стили для контента урока */
+.lesson-content {
+  padding: 15px;
+}
+
+.lesson-content h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.lesson-text {
+  color: white;
+  line-height: 1.5;
+}
+
+.back-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  margin-top: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Стили для SPA */
+.hidden-page {
+  display: none;
+}
+
+.active-page {
+  display:block;
+  
+}
+
+/* Обновленные стили для страницы кошелька */
+#wallet-page {
+  margin-top: 18%;
+   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+}
+
+
+#ton-connect-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+#ton-connect {
+  width: auto;
+  max-width: 200px;
+}
+
+.transaction-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-group {
+  margin: 15px 0;
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 12px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.9));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(103, 181, 35, 0.3);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 3px solid rgb(103, 181, 35);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.input-group input.error {
+  border-color: red;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: rgb(103, 181, 35);
+}
+
+#amount-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
+}
+
+#send-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.2s;
+  height: 48px; /* Такая же высота как у input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#send-btn:hover {
+  background: rgba(103, 181, 35, 0.9);
+  transform: translateY(-1px);
+}
+
+#send-btn:active {
+  transform: translateY(1px);
+}
+
+#send-btn:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Скрытие уведомлений TON Connect */
+[data-tc-actions-modal-container="true"],
+[data-tc-list-notifications="true"],
+[data-tc-notification-confirm="true"],
+[data-tc-notification-tx-sent="true"],
+[data-tc-notification-tx-cancelled="true"] {
+    display: none !important;
+}
+.copied-notification {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(103, 181, 35, 0.9);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    z-index: 1001;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+/* Обновлённые стили для страницы заданий */
+.task-item {
+  background: rgb(103, 181, 35);
+  border-radius: 10px;
+  padding: 16px;
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin: 12px;
+}
+
+.task-name {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.task-action-btn {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: 10px;
+}
+
+.task-action-btn:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.task-action-btn:active {
+  transform: translateY(1px);
+  background: #222;
+}
+
+/* Стили для контента уроков */
+.lesson-content {
+  padding: 15px;
+  width: 90%;
+  color: white;
+}
+
+.lesson-content h2 {
+  color: white;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.5rem;
+}
+
+.lesson-text {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.lesson-text h3 {
+  color: rgb(103, 181, 35);
+  margin: 15px 0 10px;
+  font-size: 1.2rem;
+}
+
+.lesson-text p, .lesson-text li {
+  margin-bottom: 10px;
+}
+
+.lesson-text ul, .lesson-text ol {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.back-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.back-btn i {
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: rgba(103, 181, 35, 0.9);
+}
+
+.invite-btn {
+  position: fixed;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+
+/* Стили для навигации по урокам */
+.lesson-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.next-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.next-btn:hover {
+  background: rgba(103, 181, 35, 0.9);
+}
+
+/* Скрываем заголовок "Доступные уроки" при просмотре урока */
+.lesson-content-container.active-page ~ .lessons-content .lessons-title {
+  display: none;
+}
+
+/* Стили для навигации по урокам (уточненные селекторы) */
+#lesson-content-container .lesson-navigation {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#lesson-content-container .nav-buttons-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+
+#lesson-content-container .back-btn-row {
+  width: 100%;
+  margin-top: 0px;
+}
+
+#lesson-content-container .nav-btn {
+  background: rgb(103, 181, 35);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+#lesson-content-container .nav-btn:hover {
+  background: rgba(103, 181, 35, 0.9);
+}
+
+#lesson-content-container .nav-btn i {
+  font-size: 14px;
+}
+
+#lesson-content-container .prev-btn {
+  justify-content: flex-start;
+}
+
+#lesson-content-container .next-btn {
+  justify-content: flex-end;
+}
+
+#lesson-content-container .back-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 0%;
+}
