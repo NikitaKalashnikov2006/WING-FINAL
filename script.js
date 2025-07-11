@@ -1,27 +1,12 @@
 // Инициализация Telegram WebApp
-const tg = window.Telegram.WebApp;
- tg.ready();
-
-
-  
- const availableScreenWidth = window.screen.availWidth;
- const availableScreenHeight = window.screen.availHeight;
- if (availableScreenWidth < 1440 && availableScreenHeight < 3220){
-tg.requestFullscreen();
- }
-let tonConnectUI = null;
+const tg = window.Telegram?.WebApp;
+if (tg) {
+  tg.ready();
+  tg.expand();
+}
 
 // Инициализация при загрузке
 document.addEventListener("DOMContentLoaded", () => {
-  // Развертываем WebApp на весь экран
-  tg.expand();
-  
-  // Устанавливаем данные пользователя
-  setUserData();
-  
-  // Инициализация TON Connect (только когда нужен)
-  initTonConnect();
-  
   // Обработчики для кнопок навигации
   document.querySelectorAll(".nav-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -74,51 +59,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-  // Показываем начальную страницу из hash или home
-  const hash = window.location.hash.substring(1) || 'home';
-  showPage(hash);
-
   // Обработчик для кнопки "Подписаться" в заданиях
   const subscribeBtn = document.querySelector('.task-action-btn');
   if (subscribeBtn) {
     subscribeBtn.addEventListener('click', () => {
-      const channelUsername = 'whitebirdio'; // Замените на username вашего канала
-      const channelUrl = `https://t.me/${channelUsername}`;
-      
-      try {
+      const channelUrl = 'https://t.me/whitebirdio';
+      if (tg?.openTelegramLink) {
         tg.openTelegramLink(channelUrl);
-      } catch (error) {
-        console.error('Ошибка при открытии канала:', error);
-        // Fallback для случаев, когда openTelegramLink не работает
+      } else {
         window.open(channelUrl, '_blank');
       }
     });
   }
+  
+  // Показываем начальную страницу из hash или home
+  const hash = window.location.hash.substring(1) || 'home';
+  showPage(hash);
 });
-
-// Функция для установки данных пользователя
-function setUserData() {
-  const user = tg.initDataUnsafe.user;
-  if (user) {
-    // Устанавливаем аватар
-    const avatarContainer = document.querySelector('.user-avatar');
-    if (user.photo_url) {
-      avatarContainer.src = user.photo_url;
-    } else {
-      avatarContainer.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
-    }
-    
-    // Устанавливаем имя пользователя
-    const userNameElement = document.querySelector('.userName');
-    if (user.username) {
-      userNameElement.textContent = `@${user.username}`;
-    } else if (user.first_name || user.last_name) {
-      userNameElement.textContent = `${user.first_name || ''} ${user.last_name || ''}`.trim();
-    } else {
-      userNameElement.textContent = 'Пользователь';
-    }
-  }
-}
 
 // Функция показа страницы
 function showPage(page) {
@@ -150,15 +107,9 @@ function showPage(page) {
   if (page === 'wallet') {
     initTonConnect();
   }
-  
-  // Загружаем список рефералов для страницы друзей
-  if (page === 'friends') {
-    loadReferralsList();
-  }
 }
 
 // Функция для отображения урока
-// Обновите функцию showLesson
 function showLesson(lessonId) {
   // Скрываем список уроков
   document.querySelector('.lessons-list').classList.add('hidden-page');
@@ -171,8 +122,6 @@ function showLesson(lessonId) {
   loadLessonContent(lessonId);
 }
 
-// Новая функция для загрузки контента урока
-// Обновленная функция для загрузки контента урока
 function loadLessonContent(lessonId) {
   const lessonContent = {
     lesson1: {
@@ -241,7 +190,6 @@ function loadLessonContent(lessonId) {
         </ol>
       `
     },
-    // Остальные уроки остаются без изменений
     lesson4: {
       title: "Выбор кошелька",
       text: `
@@ -324,61 +272,39 @@ function loadLessonContent(lessonId) {
   });
   
   navDiv.appendChild(navButtonsDiv);
-  
-  // Добавляем кнопку "Назад" на новую строку
-  const backBtnRow = document.createElement('div');
-  backBtnRow.className = 'back-btn-row';
-  backBtnRow.appendChild(backBtn);
-  navDiv.appendChild(backBtnRow);
-  
+  navDiv.appendChild(backBtn);
   lessonContainer.appendChild(navDiv);
 }
 
-// Добавьте обработчик для кнопки "Назад" в DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  // ... существующий код ...
-
-  // Обработчик для кнопки "Назад" в уроках
-  const backToLessonsBtn = document.getElementById('back-to-lessons');
-  if (backToLessonsBtn) {
-    backToLessonsBtn.addEventListener('click', () => {
-      document.querySelector('.lessons-list').classList.remove('hidden-page');
-      document.getElementById('lesson-content-container').classList.add('hidden-page');
-    });
-  }
-});
-
 // Функция для отправки приглашения
 function sendInvite() {
-    try {
-  const userId = tg.initDataUnsafe.user?.id || '0';
+  try {
     const botUsername = 'Business_shop_bot';
     const appName = 'WING';
-    
     const refLink = `https://t.me/${botUsername}/${appName}`;
     const shareText = `🚀 Присоединяйся к проекту WING!`;
-    
     const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(shareText)}`;
     
-    console.log('Отправляем ссылку:', shareUrl);
-    
-    tg.openTelegramLink(shareUrl);
-    
+    if (window.Telegram?.WebApp?.openTelegramLink) {
+      window.Telegram.WebApp.openTelegramLink(shareUrl);
+    } else {
+      window.open(shareUrl, '_blank');
+    }
   } catch (error) {
     console.error('Ошибка:', error);
-    tg.showAlert(`Скопируйте ссылку вручную:\nhttps://t.me/${botUsername}/${appName}`);
-  }}
-
+    alert(`Скопируйте ссылку вручную:\nhttps://t.me/Business_shop_bot/wing`);
+  }
+  
   // Закрываем модальное окно
   const modal = document.getElementById('inviteModal');
   if (modal) modal.style.display = 'none';
+}
 
 // Функция для копирования ссылки приглашения
 function copyInviteLink() {
-  const userId = tg.initDataUnsafe.user?.id || '0';
   const botUsername = 'Business_shop_bot';
   const appName = 'wing';
-  const refLink = `https://t.me/${botUsername}/${appName}?startapp=ref_${userId}`;
+  const refLink = `https://t.me/${botUsername}/${appName}`;
   
   navigator.clipboard.writeText(refLink).then(() => {
     showCopiedNotification();
@@ -415,61 +341,6 @@ function showCopiedNotification() {
   }, 2000);
 }
 
-// Функция для загрузки списка рефералов
-function loadReferralsList() {
-  const referralsContainer = document.getElementById('referralsContainer');
-  if (!referralsContainer) return;
-
-  // Здесь должен быть запрос к вашему бэкенду
-  // Для демонстрации используем пустой список
-  const referrals = [
-    { username: 'user1', profit: 15.50 },
-    { username: 'user2', profit: 8.20 },
-    { username: 'user3', profit: 3.75 },
-    { username: 'user4', profit: 3.75 },
-    { username: 'user5', profit: 3.75 },
-    { username: 'user6', profit: 3.75 },
-    { username: 'user7', profit: 3.75 },
-    { username: 'user8', profit: 3.75 },
-    { username: 'user9', profit: 3.75 },
-    { username: 'user9', profit: 3.75 }
-  ];
-  
-  // Очищаем контейнер
-  referralsContainer.innerHTML = '';
-  
-  if (referrals.length === 0) {
-    referralsContainer.innerHTML = '<div class="empty-list">Пока нет приглашённых друзей</div>';
-    return;
-  }
-  
-  // Добавляем рефералов в список
-  referrals.forEach(ref => {
-    const referralItem = document.createElement('div');
-    referralItem.className = 'referral-item';
-    referralItem.innerHTML = `
-      <span class="referral-username">@${ref.username}</span>
-      <span class="referral-profit">+${ref.profit.toFixed(2)}</span>
-    `;
-    referralsContainer.appendChild(referralItem);
-  });
-  
-  // Обновляем статистику
-  updateReferralStats(referrals);
-}
-
-// Функция для обновления статистики рефералов
-function updateReferralStats(referrals) {
-  const totalReferrals = referrals.length;
-  const totalProfit = referrals.reduce((sum, ref) => sum + ref.profit, 0);
-  
-  const statItems = document.querySelectorAll('.stat-item .stat-value');
-  if (statItems.length >= 2) {
-    statItems[0].textContent = totalReferrals;
-    statItems[1].textContent = totalProfit.toFixed(2);
-  }
-}
-
 // Функция для обновления активной кнопки
 function updateActiveButton(page) {
   document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -483,6 +354,7 @@ function updateActiveButton(page) {
 }
 
 // Инициализация TON Connect
+let tonConnectUI = null;
 function initTonConnect() {
   if (!tonConnectUI && document.getElementById('ton-connect')) {
     tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
