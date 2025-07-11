@@ -3,6 +3,11 @@ const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
   tg.expand();
+  const availableScreenWidth = window.screen.availWidth;
+ const availableScreenHeight = window.screen.availHeight;
+ if (availableScreenWidth < 1440 && availableScreenHeight < 3220){
+tg.requestFullscreen();
+ }
 }
 
 // Инициализация при загрузке
