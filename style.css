@@ -246,12 +246,13 @@ nav {
 
 /* Стили для страницы "Друзья" */
 .page {
-  position: fixed;
+  position: absolute;  /* вместо fixed */
   top: 0;
   left: 0;
   right: 0;
-  bottom: 70px;
+  bottom: 60px; /* Оставляем место для футера */
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Для плавного скролла на iOS */
 }
 
 /* Стили для страницы друзей */
